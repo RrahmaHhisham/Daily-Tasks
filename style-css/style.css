@@ -1,0 +1,414 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --size: 132px;
+  --bar-width: 20px;
+  --container-height: 600px;
+  --contaier-width: 400px;
+  --header-height: 150px;
+}
+
+.content {
+  display: flex;
+  margin: 0 0 30px 30px;
+  padding: 20px 0;
+}
+
+.title {
+  display: inline-block;
+}
+
+.ltr {
+  display: inline-block;
+  font-size: 40px;
+  font-weight: 700;
+  background: linear-gradient(
+    90deg,
+    rgba(206, 208, 15, 1) 0%,
+    rgba(63, 148, 27, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.show {
+  animation: moveText 2s linear infinite alternate;
+}
+
+@keyframes moveText {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(20px); /* Adjust the distance */
+  }
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////// */
+
+.dark-mode i {
+  font-size: 50px;
+  cursor: pointer;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  transform: translate(-5%, -5%);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////// */
+
+.progressbar {
+  margin: 20px;
+  width: var(--size);
+  aspect-ratio: 1/1;
+  background: rgb(206, 208, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(206, 208, 15, 1) 0%,
+    rgba(63, 148, 27, 1) 100%
+  );
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 20px auto;
+  font-size: 30px;
+}
+
+.progressbar::after {
+  content: attr(aria-valuenow) " %";
+  background-color: #fff;
+  border-radius: inherit;
+  width: calc(100% - var(--bar-width));
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+}
+
+.progressbar[aria-valuenow="100.0"]::after {
+  content: "Done";
+  background: rgb(206, 208, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(206, 208, 15, 1) 0%,
+    rgba(28, 77, 5, 1) 0%
+  );
+  color: rgba(206, 208, 15, 1);
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////// */
+
+.to-do {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#to-do-form {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#to-do-form .input-task {
+  padding: 10px;
+  /* width: 300px; */
+  margin-right: 30px;
+  display: flex;
+  outline: none;
+  border: 3px rgb(63, 148, 27) solid;
+  font-weight: bold;
+  font-size: 22px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+#to-do-form .main-btn {
+  position: relative;
+  text-decoration: none;
+  transition: 1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 10px 50px;
+  outline: none;
+  border: none;
+  background: rgb(206, 208, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(206, 208, 15, 1) 0%,
+    rgba(63, 148, 27, 1) 100%
+  );
+  margin-bottom: 20px;
+}
+
+#to-do-form .main-btn:hover {
+  background-color: rgb(206, 208, 15);
+  box-shadow: 0px 0px 10px rgb(206, 208, 15), 0px 0px 20px rgb(63, 148, 27),
+    0px 0px 30px rgb(206, 208, 15);
+}
+
+#to-do-form .main-btn::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 400%;
+  transition: 1s;
+  animation: animate 2s linear infinite;
+}
+
+#to-do-form .main-btn:hover::before {
+  width: 150%;
+  background: rgb(206, 208, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(206, 208, 15, 1) 0%,
+    rgba(63, 148, 27, 1) 100%
+  );
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#to-do-form .main-btn::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  transition: 0.5s;
+}
+
+#to-do-form .main-btn:hover:after {
+  background: rgb(206, 208, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(206, 208, 15, 1) 0%,
+    rgba(63, 148, 27, 1) 100%
+  );
+}
+
+#to-do-form .main-btn span {
+  position: relative;
+  z-index: 1;
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+#to-do-form .main-btn:hover span {
+  opacity: 1;
+}
+
+.main-btn-and-input #message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
+/* //////////////////////////////////////////////////////////////////////////////////////////// */
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.container .states {
+  display: flex;
+  list-style: none;
+  /* margin-right: 30px; */
+}
+
+.container .states li {
+  margin: 0 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container .states li .text {
+  display: flex;
+  width: 70%;
+  background: rgb(206, 208, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(206, 208, 15, 1) 0%,
+    rgba(63, 148, 27, 1) 100%
+  );
+  padding: 15px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.container .states li #Remaining-tasks,
+.container .states li #complete-tasks,
+.container .states li #total-tasks {
+  display: flex;
+  width: 30%;
+  padding: 15px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: rgb(206, 208, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(206, 208, 15, 1) 0%,
+    rgba(28, 77, 5, 1) 0%
+  );
+  color: rgba(206, 208, 15, 1);
+  font-size: 15px;
+  font-weight: 700;
+  justify-content: center;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////// */
+.section-tasks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.list-tasks {
+  border-radius: 0 0 5px 5px;
+  border: none;
+}
+
+.list-tasks .todo {
+  padding: 20px;
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.list-tasks .todo i {
+  margin-right: 10px;
+}
+
+.list-tasks .todo:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+.list-tasks .todo * {
+  cursor: pointer;
+}
+
+.list-tasks p {
+  flex: 1;
+  word-break: break-all;
+}
+.checked {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.list-tasks .todo .bi-trash {
+  color: rgb(236, 82, 82);
+}
+
+.delete-button {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  height: 40px;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////// */
+
+.delete {
+  position: relative;
+  text-decoration: none;
+  transition: 1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 10px 50px;
+  outline: none;
+  border: none;
+
+  background: rgb(149, 43, 22);
+  background: linear-gradient(
+    90deg,
+    rgba(149, 43, 22, 1) 0%,
+    rgba(77, 5, 5, 1) 100%
+  );
+}
+
+.delete:hover {
+  background: rgb(149, 43, 22);
+  box-shadow: 0px 0px 10px rgb(149, 43, 22), 0px 0px 20px rgb(77, 5, 5, 1),
+    0px 0px 30px rgb(149, 43, 22);
+}
+
+.delete::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 400%;
+  transition: 1s;
+  animation: animate2 2s linear infinite;
+}
+
+.delete:hover::before {
+  width: 150%;
+  background: rgb(149, 43, 22);
+  background: linear-gradient(
+    90deg,
+    rgba(149, 43, 22, 1) 0%,
+    rgba(77, 5, 5, 1) 100%
+  );
+}
+
+.delete::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background-color: white;
+  transition: 0.5s;
+}
+
+.delete:hover:after {
+  background: rgb(149, 43, 22);
+  background: linear-gradient(
+    90deg,
+    rgba(149, 43, 22, 1) 0%,
+    rgba(77, 5, 5, 1) 100%
+  );
+}
+
+.delete span {
+  position: relative;
+  z-index: 1;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.delete:hover span {
+  opacity: 1;
+  color: white !important;
+}
